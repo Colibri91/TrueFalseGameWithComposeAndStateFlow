@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.capan.truefalse.presentation.HomePageUI
+import com.capan.truefalse.presentation.game.GamePageUI
 import com.capan.truefalse.ui.theme.TruefalseTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +24,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    GamePageUI(modifier = Modifier)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     TruefalseTheme {
-        Greeting("Android")
+        HomePageUI("Android")
     }
 }
