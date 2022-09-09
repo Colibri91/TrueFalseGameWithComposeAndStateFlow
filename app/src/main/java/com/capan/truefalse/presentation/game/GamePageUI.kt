@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
@@ -34,7 +35,7 @@ import com.capan.truefalse.R
  */
 
 @Composable
-fun GamePageUI(modifier: Modifier) {
+fun GamePageUI(modifier: Modifier, navController: NavController) {
 
     val openDialog = remember { mutableStateOf(false) }
     val isQuizResultSuccess = remember { mutableStateOf(false) }
@@ -198,6 +199,6 @@ private fun Loader(modifier: Modifier,animRes : Int) {
 @Composable
 fun DefaultPreview() {
     TruefalseTheme {
-        GamePageUI(Modifier)
+        //GamePageUI(Modifier)
     }
 }
