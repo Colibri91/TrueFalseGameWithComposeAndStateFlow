@@ -1,4 +1,4 @@
-package com.capan.truefalse
+package com.capan.truefalse.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
