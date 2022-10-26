@@ -17,7 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import com.capan.truefalse.presentation.game.GamePageUI
 import com.capan.truefalse.presentation.home.HomePageUI
 import com.capan.truefalse.ui.theme.TruefalseTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
