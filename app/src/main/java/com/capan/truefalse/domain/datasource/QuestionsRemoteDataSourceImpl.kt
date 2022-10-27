@@ -12,7 +12,7 @@ import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 
 class QuestionsRemoteDataSourceImpl(private val firebaseDatabase: FirebaseDatabase) :
-    QuestionsDataSource {
+    QuestionsRemoteDataSource {
 
     companion object {
         const val QUESTIONS_REFERENCE = "questions"

@@ -10,4 +10,10 @@ interface QuestionDao {
 
     @Update
     suspend fun updateQuestion(question : QuestionEntity)
+
+    @Query("select * from questionTable where isAnswered = :isAnswered")
+    suspend fun getNotAnsweredOrAnsweredQuestions(isAnswered : Boolean = false): List<QuestionEntity>
+
+    @Query("SELECT EXISTS(SELECT * FROM questionTable)")
+    suspend fun isQuestionExists(): Boolean
 }

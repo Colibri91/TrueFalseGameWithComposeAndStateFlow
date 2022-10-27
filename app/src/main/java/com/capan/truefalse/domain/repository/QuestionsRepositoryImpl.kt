@@ -11,15 +11,23 @@ class QuestionsRepositoryImpl(
     private val questionsRemoteDataSource: QuestionsRemoteDataSourceImpl
 ) : QuestionsRepository {
 
-    override fun getQuestions(isLocalDataConsumed: Boolean): Flow<Result<List<Question>>> {
-        return if (isLocalDataConsumed) {
-            questionsRemoteDataSource.fetchQuestions()
-        } else {
+    override fun getQuestions(isLocalDataExist: Boolean): Flow<Result<List<Question>>> {
+        return if (isLocalDataExist) {
             questionsLocalDataSource.fetchQuestions()
+        } else {
+            questionsRemoteDataSource.fetchQuestions()
         }
     }
 
-    override fun updateQuestion(question: Question) {
-        questionsRemoteDataSource.updateQuestion(question.toEntity())
+    override suspend fun updateQuestion(question: Question) {
+        questionsLocalDataSource.updateQuestion(question.toEntity())
+    }
+
+    override fun getNotAnsweredOrAnsweredQuestions(isAnswered: Boolean) : Flow<Result<List<Question>>> {
+        return questionsLocalDataSource.fetchNotAnsweredOrAnsweredQuestions(isAnswered)
+    }
+
+    override suspend fun isQuestionExists(): Boolean {
+        return questionsLocalDataSource.isAnyQuestionExists()
     }
 }
