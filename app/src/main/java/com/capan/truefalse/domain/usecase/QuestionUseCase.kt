@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 class QuestionUseCase(private val questionsRepository: QuestionsRepositoryImpl) {
 
-    operator fun invoke(): Flow<Result<List<Question>>> {
-        return questionsRepository.getQuestions()
+    operator fun invoke(isLocalDataExists : Boolean): Flow<Result<List<Question>>> {
+        return questionsRepository.getQuestions(isLocalDataExists)
     }
 
 }

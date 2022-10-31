@@ -6,6 +6,7 @@ import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,17 +23,32 @@ import androidx.navigation.NavController
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.compose.*
 import com.capan.truefalse.R
+import com.capan.truefalse.domain.repository.QuestionsRepositoryImpl
+import com.capan.truefalse.domain.usecase.QuestionUseCase
 import com.capan.truefalse.ui.theme.Purple
 import com.capan.truefalse.ui.theme.TruefalseTheme
 import com.capan.truefalse.utils.customUI.buttons.PrimaryButton
 import com.capan.truefalse.utils.customUI.buttons.SecondaryButton
+import org.koin.androidx.compose.koinViewModel
+import timber.log.Timber
 
 /**
  * Created by R. Mert Dolar on 5.09.2022.
  */
 
 @Composable
-fun HomePageUI(modifier: Modifier, navController: NavController) {
+fun HomePageUI(modifier: Modifier, navController: NavController, viewModel: HomePageViewModel = koinViewModel()) {
+
+    val uiState: HomePageUIState by viewModel.uiState.collectAsState()
+
+    when(uiState){
+        is HomePageUIState.Success->{
+            Timber.d("Successssss")
+        }
+        is HomePageUIState.Error->{
+            Timber.d("Errorrrrrr")
+        }
+    }
 
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp

@@ -11,14 +11,13 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 
-class QuestionsRemoteDataSourceImpl(private val firebaseDatabase: FirebaseDatabase) :
-    QuestionsRemoteDataSource {
+class QuestionsRemoteDataSourceImpl(private val firebaseDatabase: FirebaseDatabase) {
 
     companion object {
         const val QUESTIONS_REFERENCE = "questions"
     }
 
-    override fun fetchQuestions() = callbackFlow<Result<List<Question>>> {
+    fun fetchQuestions() = callbackFlow<Result<List<Question>>> {
         val postListener = object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 this@callbackFlow.trySendBlocking(Result.failure(error.toException()))

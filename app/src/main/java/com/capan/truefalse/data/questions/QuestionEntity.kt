@@ -11,11 +11,11 @@ data class QuestionEntity(
     val id: Long?,
     @ColumnInfo(name = "questionText")
     val questionText: String?,
-    @ColumnInfo(name = "questionText")
+    @ColumnInfo(name = "questionType")
     val questionType: Int?,
-    @ColumnInfo(name = "questionText")
-    val answers: List<String>?,
-    @ColumnInfo(name = "questionText")
+    @ColumnInfo(name = "answers")
+    val answers: String?,
+    @ColumnInfo(name = "correctAnswer")
     val correctAnswer: String?,
     @ColumnInfo(name = "isAnswered")
     val isAnswered: Boolean? = false

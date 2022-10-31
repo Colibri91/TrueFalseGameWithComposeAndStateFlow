@@ -9,20 +9,21 @@ import kotlinx.coroutines.launch
 
 class HomePageViewModel(private val questionsUseCase: QuestionUseCase) : ViewModel() {
 
-   /* private val _uiState = MutableStateFlow(HomePageUIState.Success(emptyList()))
-    val uiState: StateFlow<HomePageUIState> = _uiState*/
+    private val _uiState = MutableStateFlow<HomePageUIState>(HomePageUIState.Success(emptyList()))
+    val uiState: StateFlow<HomePageUIState> = _uiState
 
     init {
         viewModelScope.launch {
-            questionsUseCase(true)
+            questionsUseCase(false)
                 .collect { questions ->
                     when {
                         questions.isSuccess -> {
                             val list = questions.getOrNull()
                             // post on a StateFlow
-                            //_uiState.value = HomePageUIState.Success(list)
+                            _uiState.value = HomePageUIState.Success(list)
                         }
                         questions.isFailure -> {
+                            _uiState.value = HomePageUIState.Error(Throwable("Can not fatch data"))
                             questions.exceptionOrNull()?.printStackTrace()
                         }
                     }

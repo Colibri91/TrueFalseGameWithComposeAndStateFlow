@@ -1,12 +1,14 @@
 package com.capan.truefalse.domain.db.question
 
+import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Update
 import com.capan.truefalse.data.questions.QuestionEntity
 
+@Dao
 interface QuestionDao {
     @Query("select * from questionTable")
-    suspend fun getQuestions(): List<QuestionEntity>
+    suspend fun getQuestions(): List<QuestionEntity>?
 
     @Update
     suspend fun updateQuestion(question : QuestionEntity)

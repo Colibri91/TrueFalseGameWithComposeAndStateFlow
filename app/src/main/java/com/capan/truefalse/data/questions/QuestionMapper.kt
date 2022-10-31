@@ -23,7 +23,7 @@ fun QuestionEntity.toModel() =
         id = id,
         questionText = questionText.orEmpty(),
         questionType = questionType,
-        answers = answers.orEmpty(),
+        answers = convertStringToList(answers.toString()),
         correctAnswer = correctAnswer.orEmpty()
     )
 
@@ -32,6 +32,18 @@ fun Question.toEntity() =
         id = id,
         questionText = questionText.orEmpty(),
         questionType = questionType,
-        answers = answers.orEmpty(),
+        answers = answers?.let { convertListToString(it) },
         correctAnswer = correctAnswer.orEmpty()
     )
+
+private fun convertListToString(listOfQuestion : List<String>) : String{
+    var listOfQuestionStr = ""
+    listOfQuestion.forEach {
+        listOfQuestionStr += "||"
+    }
+    return listOfQuestionStr
+}
+
+private fun convertStringToList(listOfQuestionStr : String) : List<String>{
+    return listOfQuestionStr.split("||")
+}
